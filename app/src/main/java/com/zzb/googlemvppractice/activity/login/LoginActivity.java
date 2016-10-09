@@ -1,7 +1,6 @@
 package com.zzb.googlemvppractice.activity.login;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,10 +9,11 @@ import android.widget.Toast;
 
 import com.zzb.googlemvppractice.Injection;
 import com.zzb.googlemvppractice.R;
+import com.zzb.googlemvppractice.activity.BaseActivity;
 import com.zzb.googlemvppractice.contract.login.PhoneLoginContract;
 import com.zzb.googlemvppractice.presenter.login.PhoneLoginPresenter;
 
-public class LoginActivity extends AppCompatActivity implements PhoneLoginContract.View {
+public class LoginActivity extends BaseActivity implements PhoneLoginContract.View {
 
     private PhoneLoginContract.Presenter mPhonePresenter;
     @Override
