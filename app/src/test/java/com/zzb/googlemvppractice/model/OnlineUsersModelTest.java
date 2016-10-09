@@ -38,12 +38,22 @@ public class OnlineUsersModelTest {
         removeUser(null);
         removeUser(new User(1));
     }
+
     @Test
     public void remove_add_remove_add() {
         User user1 = new User(1);
         removeUser(user1);
         addUser(user1);
         removeUser(user1);
+        addUser(user1);
+        Assert.assertTrue(mOnlineUsersModel.getOnlineUsers().contains(user1));
+        Assert.assertTrue(mOnlineUsersModel.getOnlineUsers().size() == 1);
+    }
+
+    @Test
+    public void add_test() {
+        User user1 = new User(1);
+        addUser(user1);
         addUser(user1);
         Assert.assertTrue(mOnlineUsersModel.getOnlineUsers().contains(user1));
         Assert.assertTrue(mOnlineUsersModel.getOnlineUsers().size() == 1);
