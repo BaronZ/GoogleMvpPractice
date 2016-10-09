@@ -26,7 +26,7 @@ public class OnlineUsersModel {
     }
 
     //update online users every 1000 millis
-    public void addUser(User user, OnlineUsersCallback callback) {
+    public void addOrUpdateUser(User user, OnlineUsersCallback callback) {
         mRemoveUsers.remove(user);
         if (mAddUsers.contains(user)) {
             mAddUsers.remove(user);
@@ -45,6 +45,16 @@ public class OnlineUsersModel {
             mRemoveUsers.add(user);
         }
         onOnlineUsersChanged(callback);
+    }
+
+    public void selfLeaveRoom(OnlineUsersCallback callback) {
+        mAddUsers.clear();
+        mRemoveUsers.clear();
+        mOnlineUsers.clear();
+        mNeedUpdate = false;
+        if (callback != null) {
+            callback.onOnlineUsersChanged(null);
+        }
     }
 
     public List<User> getOnlineUsers() {

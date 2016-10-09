@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.zzb.googlemvppractice.Injection;
 import com.zzb.googlemvppractice.R;
 import com.zzb.googlemvppractice.activity.BaseActivity;
+import com.zzb.googlemvppractice.activity.live.WatchLiveActivity;
 import com.zzb.googlemvppractice.contract.login.PhoneLoginContract;
 import com.zzb.googlemvppractice.presenter.login.PhoneLoginPresenter;
 
@@ -41,6 +42,7 @@ public class LoginActivity extends BaseActivity implements PhoneLoginContract.Vi
     @Override
     public void showLoginSuccess() {
         Toast.makeText(this, "login success", Toast.LENGTH_SHORT).show();
+        WatchLiveActivity.launch(this);
     }
 
     @Override

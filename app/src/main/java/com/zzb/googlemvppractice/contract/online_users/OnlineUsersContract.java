@@ -13,7 +13,7 @@ import java.util.List;
 public class OnlineUsersContract {
 
     public interface View extends BaseView<Presenter> {
-        void updateOnlineUser(List<User> users);
+        void updateOnlineUsers(List<User> users);
     }
 
     public interface Presenter extends BasePresenter {
@@ -21,5 +21,9 @@ public class OnlineUsersContract {
         void joinRoom(User user);
 
         void leaveRoom(User user);
+
+        void selfLeaveRoom();
+
+        void userScoreChanged(User user);
     }
 }

@@ -25,7 +25,7 @@ public class OnlineUsersPresenter implements Presenter, OnlineUsersCallback {
 
     @Override
     public void joinRoom(User user) {
-        mOnlineUsersModel.addUser(user, this);
+        mOnlineUsersModel.addOrUpdateUser(user, this);
     }
 
     @Override
@@ -34,12 +34,23 @@ public class OnlineUsersPresenter implements Presenter, OnlineUsersCallback {
     }
 
     @Override
+    public void selfLeaveRoom() {
+        mOnlineUsersModel.selfLeaveRoom(this);
+    }
+
+    @Override
+    public void userScoreChanged(User user) {
+        mOnlineUsersModel.addOrUpdateUser(user, this);
+    }
+
+
+    @Override
     public void start() {
 
     }
 
     @Override
     public void onOnlineUsersChanged(List<User> users) {
-        mOnlineUsersView.updateOnlineUser(users);
+        mOnlineUsersView.updateOnlineUsers(users);
     }
 }

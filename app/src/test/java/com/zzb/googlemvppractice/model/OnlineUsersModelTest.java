@@ -21,7 +21,7 @@ public class OnlineUsersModelTest {
 
     @Test
     public void null_test() {
-        mOnlineUsersModel.addUser(null, null);
+        mOnlineUsersModel.addOrUpdateUser(null, null);
         mOnlineUsersModel.removeUser(null, null);
     }
 
@@ -79,7 +79,7 @@ public class OnlineUsersModelTest {
     }
 
     private void addUser(User user) {
-        mOnlineUsersModel.addUser(user, null);
+        mOnlineUsersModel.addOrUpdateUser(user, null);
     }
 
     private void removeUser(User user) {

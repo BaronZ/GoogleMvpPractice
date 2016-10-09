@@ -17,6 +17,8 @@
         </activity>
         <activity android:name=".activity.login.LoginActivity"/>
         <activity android:name=".activity.live.WatchLiveActivity"/>
+        <activity android:name=".activity.live.HostLiveActivity">
+        </activity>
     </application>
 
 </manifest>
