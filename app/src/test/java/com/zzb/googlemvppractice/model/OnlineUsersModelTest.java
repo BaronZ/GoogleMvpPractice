@@ -51,7 +51,7 @@ public class OnlineUsersModelTest {
     }
 
     @Test
-    public void add_test() {
+    public void duplicate_add_test() {
         User user1 = new User(1);
         addUser(user1);
         addUser(user1);
