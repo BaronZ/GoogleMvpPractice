@@ -44,10 +44,7 @@ public class OnlineUsersPresenter implements Presenter, OnlineUsersCallback {
     }
 
 
-    @Override
-    public void start() {
 
-    }
 
     @Override
     public void onOnlineUsersChanged(List<User> users) {

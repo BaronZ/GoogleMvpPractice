@@ -31,8 +31,5 @@ public class PhoneLoginPresenter implements Presenter {
 
     }
 
-    @Override
-    public void start() {
 
-    }
 }
