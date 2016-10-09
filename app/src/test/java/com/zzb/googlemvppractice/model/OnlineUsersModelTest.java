@@ -28,6 +28,13 @@ public class OnlineUsersModelTest {
     @Test
     public void size_test() {
         User user = new User(1);
+
+        addUser(user);
+        Assert.assertEquals(1, mOnlineUsersModel.getOnlineUsers().size());
+
+        removeUser(user);
+        Assert.assertEquals(0, mOnlineUsersModel.getOnlineUsers().size());
+
         addUser(user);
         removeUser(user);
         Assert.assertEquals(0, mOnlineUsersModel.getOnlineUsers().size());
