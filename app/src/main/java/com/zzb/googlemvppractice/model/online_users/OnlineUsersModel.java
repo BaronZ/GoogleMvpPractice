@@ -51,6 +51,8 @@ public class OnlineUsersModel {
         mOnlineUsers.clear();
         mOnlineUsers.removeAll(mRemoveUsers);
         mOnlineUsers.addAll(mAddUsers);
+        mRemoveUsers.clear();
+        mAddUsers.clear();
         if (callback != null) {
             callback.onOnlineUsersChanged(mOnlineUsers);
         }
