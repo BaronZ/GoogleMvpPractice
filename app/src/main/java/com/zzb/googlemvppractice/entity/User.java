@@ -10,6 +10,10 @@ public class User {
     private String avatar;
     private int score;
 
+    public User(long uid) {
+        this.uid = uid;
+    }
+
     public String getNick() {
         return nick;
     }
