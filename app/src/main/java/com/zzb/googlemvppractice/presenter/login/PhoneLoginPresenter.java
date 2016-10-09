@@ -3,6 +3,7 @@ package com.zzb.googlemvppractice.presenter.login;
 import com.zzb.googlemvppractice.contract.login.PhoneLoginContract;
 import com.zzb.googlemvppractice.contract.login.PhoneLoginContract.Presenter;
 import com.zzb.googlemvppractice.contract.login.PhoneLoginContract.View;
+import com.zzb.googlemvppractice.model.login.ILoginModel;
 
 /**
  * Created by ZZB on 2016/9/30.
@@ -11,9 +12,11 @@ import com.zzb.googlemvppractice.contract.login.PhoneLoginContract.View;
 public class PhoneLoginPresenter implements Presenter {
 
     private PhoneLoginContract.View mPhoneLoginView;
+    private ILoginModel mLoginModel;
 
-    public PhoneLoginPresenter(View phoneLoginView) {
+    public PhoneLoginPresenter(ILoginModel loginModel, View phoneLoginView) {
         mPhoneLoginView = phoneLoginView;
+        mLoginModel = loginModel;
         mPhoneLoginView.setPresenter(this);
     }
 
