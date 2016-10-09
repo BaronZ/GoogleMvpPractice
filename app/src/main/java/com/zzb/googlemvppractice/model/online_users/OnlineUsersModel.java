@@ -48,6 +48,7 @@ public class OnlineUsersModel {
     // TODO: 2016/10/9 每秒更新一次，不每次来都更新
     private void onOnlineUsersChanged(OnlineUsersCallback callback) {
         mNeedUpdate = true;
+        mOnlineUsers.clear();
         mOnlineUsers.removeAll(mRemoveUsers);
         mOnlineUsers.addAll(mAddUsers);
         if (callback != null) {
