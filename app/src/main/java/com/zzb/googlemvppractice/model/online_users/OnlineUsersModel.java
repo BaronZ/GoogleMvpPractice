@@ -41,7 +41,9 @@ public class OnlineUsersModel {
 
     public void removeUser(User user, OnlineUsersCallback callback) {
         mAddUsers.remove(user);
-        mRemoveUsers.add(user);
+        if (!mRemoveUsers.contains(user)) {
+            mRemoveUsers.add(user);
+        }
         onOnlineUsersChanged(callback);
     }
 
