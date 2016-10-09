@@ -28,9 +28,13 @@ public class OnlineUsersModel {
     //update online users every 1000 millis
     public void addUser(User user, OnlineUsersCallback callback) {
         mRemoveUsers.remove(user);
-        if (!mAddUsers.contains(user)) {
-            mAddUsers.add(user);
+        if (mAddUsers.contains(user)) {
+            mAddUsers.remove(user);
         }
+        if (mOnlineUsers.contains(user)) {
+            mOnlineUsers.remove(user);
+        }
+        mAddUsers.add(user);
         onOnlineUsersChanged(callback);
     }
 
@@ -48,7 +52,6 @@ public class OnlineUsersModel {
     // TODO: 2016/10/9 每秒更新一次，不每次来都更新
     private void onOnlineUsersChanged(OnlineUsersCallback callback) {
         mNeedUpdate = true;
-        mOnlineUsers.clear();
         mOnlineUsers.removeAll(mRemoveUsers);
         mOnlineUsers.addAll(mAddUsers);
         mRemoveUsers.clear();
