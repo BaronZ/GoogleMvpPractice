@@ -59,6 +59,18 @@ public class OnlineUsersModelTest {
         Assert.assertTrue(mOnlineUsersModel.getOnlineUsers().size() == 1);
     }
 
+    @Test
+    public void add_diff_user_test() {
+        User user1 = new User(1);
+        User user2 = new User(2);
+        addUser(user1);
+        addUser(user2);
+        Assert.assertTrue(mOnlineUsersModel.getOnlineUsers().contains(user1));
+        Assert.assertTrue(mOnlineUsersModel.getOnlineUsers().contains(user2));
+        Assert.assertTrue(mOnlineUsersModel.getOnlineUsers().size() == 2);
+
+    }
+
     private void addUser(User user) {
         mOnlineUsersModel.addUser(user, null);
     }
