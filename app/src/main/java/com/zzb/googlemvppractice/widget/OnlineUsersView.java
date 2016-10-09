@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.zzb.googlemvppractice.R;
 import com.zzb.googlemvppractice.contract.online_users.OnlineUsersContract;
-import com.zzb.googlemvppractice.contract.online_users.OnlineUsersContract.Presenter;
 import com.zzb.googlemvppractice.entity.User;
 import com.zzb.googlemvppractice.model.online_users.OnlineUsersModel;
 import com.zzb.googlemvppractice.presenter.online_users.OnlineUsersPresenter;
@@ -76,10 +75,6 @@ public class OnlineUsersView extends FrameLayout implements OnlineUsersContract.
     }
 
     //============presenter end
-    @Override
-    public void setPresenter(Presenter presenter) {
-        mOnlineUsersPresenter = (OnlineUsersPresenter) presenter;
-    }
 
 
 }

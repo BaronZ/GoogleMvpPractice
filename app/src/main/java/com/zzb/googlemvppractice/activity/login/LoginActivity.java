@@ -25,7 +25,7 @@ public class LoginActivity extends BaseActivity implements PhoneLoginContract.Vi
         View btnLogin = findViewById(R.id.btn_login);
         final EditText etPhone = (EditText) findViewById(R.id.et_phone);
         final EditText etPsw = (EditText) findViewById(R.id.et_psw);
-        new PhoneLoginPresenter(Injection.provideLoginModel(), this);//// TODO: 2016/9/30 why do we need setPresenter, why not directly instance presenter
+        mPhonePresenter = new PhoneLoginPresenter(Injection.provideLoginModel(), this);//// TODO: 2016/9/30 why do we need setPresenter, why not directly instance presenter
         btnLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,10 +60,7 @@ public class LoginActivity extends BaseActivity implements PhoneLoginContract.Vi
         // fragment isAdded();
     }
 
-    @Override
-    public void setPresenter(PhoneLoginContract.Presenter presenter) {
-        mPhonePresenter = presenter;
-    }
+
 
     private String getEtText(EditText et){
         Editable editable = et.getText();

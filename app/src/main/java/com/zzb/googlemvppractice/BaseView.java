@@ -6,6 +6,5 @@ package com.zzb.googlemvppractice;
 
 public interface BaseView<T> {
 
-    void setPresenter(T presenter);
 
 }

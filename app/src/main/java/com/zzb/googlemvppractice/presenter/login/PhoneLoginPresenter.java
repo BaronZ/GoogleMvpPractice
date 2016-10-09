@@ -17,7 +17,6 @@ public class PhoneLoginPresenter implements Presenter {
     public PhoneLoginPresenter(ILoginModel loginModel, View phoneLoginView) {
         mPhoneLoginView = phoneLoginView;
         mLoginModel = loginModel;
-        mPhoneLoginView.setPresenter(this);
     }
 
     @Override
