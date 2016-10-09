@@ -28,7 +28,7 @@ public class OnlineUsersModel {
     //update online users every 1000 millis
     public void addUser(User user, OnlineUsersCallback callback) {
         mRemoveUsers.remove(user);
-        if (!mOnlineUsers.contains(user)) {
+        if (!mAddUsers.contains(user)) {
             mAddUsers.add(user);
         }
         onOnlineUsersChanged(callback);
