@@ -3,7 +3,9 @@ package com.zzb.googlemvppractice.widget;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
+import com.zzb.googlemvppractice.R;
 import com.zzb.googlemvppractice.contract.online_users.OnlineUsersContract;
 import com.zzb.googlemvppractice.contract.online_users.OnlineUsersContract.Presenter;
 import com.zzb.googlemvppractice.entity.User;
@@ -17,19 +19,27 @@ import java.util.List;
  */
 
 public class OnlineUsersView extends FrameLayout implements OnlineUsersContract.View {
-
+    private TextView mTvContent;
     private OnlineUsersPresenter mOnlineUsersPresenter;
 
     public OnlineUsersView(Context context) {
         super(context);
+        initViews(context);
     }
 
     public OnlineUsersView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        initViews(context);
     }
 
     public OnlineUsersView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initViews(context);
+    }
+
+    private void initViews(Context context) {
+        inflate(context, R.layout.online_users_view, this);
+        mTvContent = (TextView) findViewById(R.id.tv_content);
     }
 
     public void init(OnlineUsersModel onlineUsersModel) {
@@ -38,7 +48,14 @@ public class OnlineUsersView extends FrameLayout implements OnlineUsersContract.
 
     @Override
     public void updateOnlineUsers(List<User> onlineUsers) {
-        //update ui
+        StringBuilder sb = new StringBuilder();
+        if (onlineUsers != null) {
+            for (User user : onlineUsers) {
+                sb.append(user.getUid()).append(":s ").append(user.getScore()).append("|");
+            }
+        }
+
+        mTvContent.setText(sb.toString());
     }
 
     //=============presenter start

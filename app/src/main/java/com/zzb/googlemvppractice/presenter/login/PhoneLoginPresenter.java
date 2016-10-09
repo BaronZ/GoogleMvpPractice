@@ -23,7 +23,7 @@ public class PhoneLoginPresenter implements Presenter {
     @Override
     public void login(String phone, String psw) {
         mPhoneLoginView.showLoginDialog();
-        if ("123".equals(phone) && "123".equals(psw)) {
+        if ("".equals(phone) && "".equals(psw)) {
             mPhoneLoginView.showLoginSuccess();
         } else {
             mPhoneLoginView.showLoginError();
