@@ -33,6 +33,13 @@
         android:text="remove"/>
 
     <Button
+        android:id="@+id/btn_update_rank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="update rank"/>
+
+    <Button
         android:id="@+id/btn_leave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

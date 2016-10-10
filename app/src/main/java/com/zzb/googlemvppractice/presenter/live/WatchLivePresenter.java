@@ -32,6 +32,6 @@ public class WatchLivePresenter implements WatchLiveContact.Presenter {
 
     @Override
     public void updateRank(User... users) {
-
+        mLiveModel.updateRank(users);
     }
 }

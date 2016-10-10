@@ -72,6 +72,9 @@ public class WatchLiveActivity extends BaseActivity implements View.OnClickListe
             case R.id.btn_remove:
                 mWatchLivePushController.onReceivePushMessage("2");
                 break;
+            case R.id.btn_update_rank:
+                mWatchLivePushController.onReceivePushMessage("3");
+                break;
             case R.id.btn_leave:
                 onLeaveLiveRoom();
                 break;
