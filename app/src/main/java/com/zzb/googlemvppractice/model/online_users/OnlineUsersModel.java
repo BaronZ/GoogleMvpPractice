@@ -1,6 +1,7 @@
 package com.zzb.googlemvppractice.model.online_users;
 
 import com.zzb.googlemvppractice.entity.User;
+import com.zzb.googlemvppractice.model.live.LiveModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,13 +13,15 @@ import java.util.List;
 
 public class OnlineUsersModel {
     private static final long UPDATE_LIST_INTERVAL_IN_MILLIS = 1000;
+    private LiveModel mLiveModel;
     private final List<User> mOnlineUsers = Collections.synchronizedList(new ArrayList<User>());
     private final List<User> mAddUsers = Collections.synchronizedList(new ArrayList<User>());
     private final List<User> mRemoveUsers = Collections.synchronizedList(new ArrayList<User>());
     private boolean mNeedUpdate = false;
 //    private OnlineUsersCallback mOnlineUsersCallback;
 
-    public OnlineUsersModel() {
+    public OnlineUsersModel(LiveModel liveModel) {
+        mLiveModel = liveModel;
     }
 
     public interface OnlineUsersCallback {
@@ -57,6 +60,16 @@ public class OnlineUsersModel {
         }
     }
 
+    public void updateOnlineUsersRank(OnlineUsersCallback callback) {
+        if (mOnlineUsers == null) {
+            return;
+        }
+        for (User user : mOnlineUsers) {
+            user.setRank(mLiveModel.getRank(user.getUid()));
+        }
+        onOnlineUsersChanged(callback);
+    }
+
     public List<User> getOnlineUsers() {
         return mOnlineUsers;
     }
@@ -68,9 +81,14 @@ public class OnlineUsersModel {
         mOnlineUsers.addAll(mAddUsers);
         mRemoveUsers.clear();
         mAddUsers.clear();
+        sortOnlineUsers();
         if (callback != null) {
             callback.onOnlineUsersChanged(mOnlineUsers);
         }
         mNeedUpdate = false;
+    }
+
+    private void sortOnlineUsers() {
+
     }
 }

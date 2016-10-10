@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.zzb.googlemvppractice.R;
 import com.zzb.googlemvppractice.contract.online_users.OnlineUsersContract;
 import com.zzb.googlemvppractice.entity.User;
+import com.zzb.googlemvppractice.model.live.LiveModel;
 import com.zzb.googlemvppractice.model.online_users.OnlineUsersModel;
 import com.zzb.googlemvppractice.presenter.online_users.OnlineUsersPresenter;
 
@@ -41,8 +42,8 @@ public class OnlineUsersView extends FrameLayout implements OnlineUsersContract.
         mTvContent = (TextView) findViewById(R.id.tv_content);
     }
 
-    public void init(OnlineUsersModel onlineUsersModel) {
-        mOnlineUsersPresenter = new OnlineUsersPresenter(this, onlineUsersModel);
+    public void init(OnlineUsersModel onlineUsersModel, LiveModel liveModel) {
+        mOnlineUsersPresenter = new OnlineUsersPresenter(this, onlineUsersModel, liveModel);
     }
 
     @Override
@@ -74,7 +75,12 @@ public class OnlineUsersView extends FrameLayout implements OnlineUsersContract.
         mOnlineUsersPresenter.selfLeaveRoom();
     }
 
+
     //============presenter end
+
+    public OnlineUsersPresenter getOnlineUsersPresenter() {
+        return mOnlineUsersPresenter;
+    }
 
 
 }

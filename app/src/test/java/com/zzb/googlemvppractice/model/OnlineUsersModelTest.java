@@ -1,6 +1,7 @@
 package com.zzb.googlemvppractice.model;
 
 import com.zzb.googlemvppractice.entity.User;
+import com.zzb.googlemvppractice.model.live.LiveModel;
 import com.zzb.googlemvppractice.model.online_users.OnlineUsersModel;
 
 import org.junit.Assert;
@@ -13,10 +14,11 @@ import org.junit.Test;
 
 public class OnlineUsersModelTest {
     private OnlineUsersModel mOnlineUsersModel;
-
+    private LiveModel mLiveModel;
     @Before
     public void setUp() {
-        mOnlineUsersModel = new OnlineUsersModel();
+        mLiveModel = new LiveModel();
+        mOnlineUsersModel = new OnlineUsersModel(mLiveModel);
     }
 
     @Test

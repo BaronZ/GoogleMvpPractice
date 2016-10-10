@@ -3,7 +3,8 @@ package com.zzb.googlemvppractice.model.live;
 import android.util.Log;
 
 import com.zzb.googlemvppractice.entity.User;
-import com.zzb.googlemvppractice.widget.OnlineUsersView;
+import com.zzb.googlemvppractice.presenter.live.WatchLivePresenter;
+import com.zzb.googlemvppractice.presenter.online_users.OnlineUsersPresenter;
 
 import java.util.Random;
 
@@ -14,7 +15,9 @@ import java.util.Random;
 public class WatchLivePushController {
 
 
-    private OnlineUsersView mOnlineUsersView;
+    //    private OnlineUsersView mOnlineUsersView;
+    private OnlineUsersPresenter mOnlineUsersPresenter;
+    private WatchLivePresenter mWatchLivePresenter;
 
     public WatchLivePushController() {
     }
@@ -23,13 +26,13 @@ public class WatchLivePushController {
         int code = Integer.valueOf(message);
         switch (code) {
             case 1:
-                mOnlineUsersView.joinRoom(getRandomUser());
+                mOnlineUsersPresenter.joinRoom(getRandomUser());
                 break;
             case 2:
-                mOnlineUsersView.leaveRoom(getRandomUser());
+                mOnlineUsersPresenter.leaveRoom(getRandomUser());
                 break;
             case 3:
-                mOnlineUsersView.onUserScoreChanged(getRandomUser());
+                mWatchLivePresenter.updateRank(getRandomUser());
                 break;
         }
     }
@@ -43,8 +46,11 @@ public class WatchLivePushController {
         return user;
     }
 
-    public void setOnlineUsersView(OnlineUsersView onlineUsersView) {
-        mOnlineUsersView = onlineUsersView;
+    public void setOnlineUsersPresenter(OnlineUsersPresenter onlineUsersPresenter) {
+        mOnlineUsersPresenter = onlineUsersPresenter;
     }
 
+    public void setWatchLivePresenter(WatchLivePresenter watchLivePresenter) {
+        mWatchLivePresenter = watchLivePresenter;
+    }
 }

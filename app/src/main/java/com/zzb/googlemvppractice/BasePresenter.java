@@ -6,5 +6,4 @@ package com.zzb.googlemvppractice;
 
 public interface BasePresenter {
 
-
 }

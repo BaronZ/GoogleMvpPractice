@@ -9,6 +9,7 @@ public class User {
     private String nick;
     private String avatar;
     private int score;
+    private int rank;
 
     public User(long uid) {
         this.uid = uid;
@@ -44,6 +45,14 @@ public class User {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 
     @Override

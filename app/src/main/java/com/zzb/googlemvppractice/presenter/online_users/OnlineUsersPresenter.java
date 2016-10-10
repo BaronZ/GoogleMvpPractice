@@ -4,6 +4,7 @@ import com.zzb.googlemvppractice.contract.online_users.OnlineUsersContract;
 import com.zzb.googlemvppractice.contract.online_users.OnlineUsersContract.Presenter;
 import com.zzb.googlemvppractice.contract.online_users.OnlineUsersContract.View;
 import com.zzb.googlemvppractice.entity.User;
+import com.zzb.googlemvppractice.model.live.LiveModel;
 import com.zzb.googlemvppractice.model.online_users.OnlineUsersModel;
 import com.zzb.googlemvppractice.model.online_users.OnlineUsersModel.OnlineUsersCallback;
 
@@ -17,15 +18,22 @@ public class OnlineUsersPresenter implements Presenter, OnlineUsersCallback {
 
     private OnlineUsersContract.View mOnlineUsersView;
     private OnlineUsersModel mOnlineUsersModel;
+    private LiveModel mLiveModel;
 
-    public OnlineUsersPresenter(View onlineUsersView, OnlineUsersModel onlineUsersModel) {
+
+
+    public OnlineUsersPresenter(View onlineUsersView, OnlineUsersModel onlineUsersModel, LiveModel liveModel) {
         mOnlineUsersView = onlineUsersView;
         mOnlineUsersModel = onlineUsersModel;
+        mLiveModel = liveModel;
     }
 
     @Override
     public void joinRoom(User user) {
-        mOnlineUsersModel.addOrUpdateUser(user, this);
+        if (user != null) {
+            user.setRank(mLiveModel.getRank(user.getUid()));
+            mOnlineUsersModel.addOrUpdateUser(user, this);
+        }
     }
 
     @Override
@@ -40,14 +48,15 @@ public class OnlineUsersPresenter implements Presenter, OnlineUsersCallback {
 
     @Override
     public void userScoreChanged(User user) {
-        mOnlineUsersModel.addOrUpdateUser(user, this);
+        mLiveModel.updateRank(user);
+        mOnlineUsersModel.updateOnlineUsersRank(this);
     }
-
-
 
 
     @Override
     public void onOnlineUsersChanged(List<User> users) {
         mOnlineUsersView.updateOnlineUsers(users);
     }
+
+
 }
