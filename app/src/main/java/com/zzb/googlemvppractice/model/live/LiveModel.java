@@ -28,7 +28,9 @@ public class LiveModel {
         mRankModel.updateRank(users);
     }
 
-
+    public int getRank(long uid){
+        return mRankModel.getRank(uid);
+    }
     public void leaveLiveRoom() {
         mRankModel.clear();
     }

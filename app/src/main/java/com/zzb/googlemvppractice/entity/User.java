@@ -15,6 +15,11 @@ public class User {
         this.uid = uid;
     }
 
+    public User(long uid, int score) {
+        this.uid = uid;
+        this.score = score;
+    }
+
     public String getNick() {
         return nick;
     }
