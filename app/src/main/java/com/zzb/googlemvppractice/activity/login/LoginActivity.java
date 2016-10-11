@@ -7,11 +7,11 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.zzb.googlemvppractice.Injection;
 import com.zzb.googlemvppractice.R;
 import com.zzb.googlemvppractice.activity.BaseActivity;
 import com.zzb.googlemvppractice.activity.live.WatchLiveActivity;
 import com.zzb.googlemvppractice.contract.login.PhoneLoginContract;
+import com.zzb.googlemvppractice.model.login.LoginModelImpl;
 import com.zzb.googlemvppractice.presenter.login.PhoneLoginPresenter;
 
 public class LoginActivity extends BaseActivity implements PhoneLoginContract.View {
@@ -25,7 +25,7 @@ public class LoginActivity extends BaseActivity implements PhoneLoginContract.Vi
         View btnLogin = findViewById(R.id.btn_login);
         final EditText etPhone = (EditText) findViewById(R.id.et_phone);
         final EditText etPsw = (EditText) findViewById(R.id.et_psw);
-        mPhonePresenter = new PhoneLoginPresenter(Injection.provideLoginModel(), this);//// TODO: 2016/9/30 why do we need setPresenter, why not directly instance presenter
+        mPhonePresenter = new PhoneLoginPresenter(new LoginModelImpl(), this);//// TODO: 2016/9/30 why do we need setPresenter, why not directly instance presenter
         btnLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
