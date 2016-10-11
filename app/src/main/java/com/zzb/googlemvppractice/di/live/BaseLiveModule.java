@@ -11,12 +11,12 @@ import dagger.Provides;
 /**
  * Created by ZZB on 2016/10/11.
  */
-@Module
-public class OnlineUsersModule {
 
+@Module
+public class BaseLiveModule {
     private OnlineUsersContract.View mOnlineUsersView;
 
-    public OnlineUsersModule(OnlineUsersContract.View onlineUsersView) {
+    public BaseLiveModule(OnlineUsersContract.View onlineUsersView) {
         mOnlineUsersView = onlineUsersView;
     }
 
@@ -27,5 +27,9 @@ public class OnlineUsersModule {
     @Provides
     OnlineUsersModel provideOnlineUsersModel(LiveModel liveModel){
         return new OnlineUsersModel(liveModel);
+    }
+    @Provides
+    LiveModel provideLiveModel() {
+        return new LiveModel();
     }
 }

@@ -7,11 +7,10 @@ import android.widget.TextView;
 
 import com.zzb.googlemvppractice.R;
 import com.zzb.googlemvppractice.contract.online_users.OnlineUsersContract;
+import com.zzb.googlemvppractice.contract.online_users.OnlineUsersContract.Presenter;
 import com.zzb.googlemvppractice.entity.User;
 
 import java.util.List;
-
-import javax.inject.Inject;
 
 /**
  * Created by ZZB on 2016/10/9.
@@ -19,7 +18,6 @@ import javax.inject.Inject;
 
 public class OnlineUsersView extends FrameLayout implements OnlineUsersContract.View {
     private TextView mTvContent;
-    @Inject
     OnlineUsersContract.Presenter mOnlineUsersPresenter;
 
     public OnlineUsersView(Context context) {
@@ -78,9 +76,8 @@ public class OnlineUsersView extends FrameLayout implements OnlineUsersContract.
 
     //============presenter end
 
-    public OnlineUsersContract.Presenter getOnlineUsersPresenter() {
-        return mOnlineUsersPresenter;
+
+    public void setOnlineUsersPresenter(Presenter onlineUsersPresenter) {
+        mOnlineUsersPresenter = onlineUsersPresenter;
     }
-
-
 }

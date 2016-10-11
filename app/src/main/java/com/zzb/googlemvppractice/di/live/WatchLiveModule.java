@@ -32,9 +32,6 @@ public class WatchLiveModule {
         return new WatchLivePushController(onlineUsersPresenter, watchLivePresenter);
     }
 
-    @Provides
-    LiveModel provideLiveModel() {
-        return new LiveModel();
-    }
+
 
 }

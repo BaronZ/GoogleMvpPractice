@@ -8,8 +8,10 @@ import android.view.View;
 import com.zzb.googlemvppractice.R;
 import com.zzb.googlemvppractice.activity.BaseActivity;
 import com.zzb.googlemvppractice.contract.live.WatchLiveContact;
+import com.zzb.googlemvppractice.di.live.BaseLiveComponent;
+import com.zzb.googlemvppractice.di.live.BaseLiveModule;
+import com.zzb.googlemvppractice.di.live.DaggerBaseLiveComponent;
 import com.zzb.googlemvppractice.di.live.DaggerWatchLiveComponent;
-import com.zzb.googlemvppractice.di.live.OnlineUsersModule;
 import com.zzb.googlemvppractice.di.live.WatchLiveModule;
 import com.zzb.googlemvppractice.entity.User;
 import com.zzb.googlemvppractice.model.live.WatchLivePushController;
@@ -38,9 +40,12 @@ public class WatchLiveActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void initInjections() {
+        BaseLiveComponent baseLiveComponent = DaggerBaseLiveComponent.builder()
+                .baseLiveModule(new BaseLiveModule(mOnlineUsersView))
+                .build();
         DaggerWatchLiveComponent.builder()
+                .baseLiveComponent(baseLiveComponent)
                 .watchLiveModule(new WatchLiveModule(this))
-                .onlineUsersModule(new OnlineUsersModule(mOnlineUsersView))
                 .build().inject(this);
     }
 
