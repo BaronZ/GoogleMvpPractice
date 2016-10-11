@@ -11,6 +11,9 @@ public class User {
     private int score;
     private int rank;
 
+    public User() {
+    }
+
     public User(long uid) {
         this.uid = uid;
     }

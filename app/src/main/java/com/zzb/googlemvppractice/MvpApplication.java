@@ -2,6 +2,7 @@ package com.zzb.googlemvppractice;
 
 import android.app.Application;
 
+import com.zzb.googlemvppractice.di.component.app.AppComponent;
 import com.zzb.googlemvppractice.di.component.app.DaggerAppComponent;
 import com.zzb.googlemvppractice.di.module.app.AppModule;
 
@@ -10,14 +11,27 @@ import com.zzb.googlemvppractice.di.module.app.AppModule;
  */
 
 public class MvpApplication extends Application {
+    private AppComponent mAppComponent;
+
+    private static MvpApplication sApplication;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        sApplication = this;
         initDI();
     }
 
     private void initDI() {
-        DaggerAppComponent.builder().appModule(new AppModule(this)).build().inject(this);
+        mAppComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
+        mAppComponent.inject(this);
+    }
+
+    public static MvpApplication getApplication() {
+        return sApplication;
+    }
+
+    public AppComponent getAppComponent() {
+        return mAppComponent;
     }
 }

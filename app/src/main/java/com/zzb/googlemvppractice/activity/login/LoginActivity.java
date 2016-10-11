@@ -11,21 +11,25 @@ import com.zzb.googlemvppractice.R;
 import com.zzb.googlemvppractice.activity.BaseActivity;
 import com.zzb.googlemvppractice.activity.live.WatchLiveActivity;
 import com.zzb.googlemvppractice.contract.login.PhoneLoginContract;
-import com.zzb.googlemvppractice.model.login.LoginModelImpl;
-import com.zzb.googlemvppractice.presenter.login.PhoneLoginPresenter;
+import com.zzb.googlemvppractice.di.component.login.DaggerLoginComponent;
+import com.zzb.googlemvppractice.di.module.login.LoginModule;
+import com.zzb.googlemvppractice.entity.User;
+
+import javax.inject.Inject;
 
 public class LoginActivity extends BaseActivity implements PhoneLoginContract.View {
 
-    private PhoneLoginContract.Presenter mPhonePresenter;
+    @Inject
+    PhoneLoginContract.Presenter mPhonePresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        initDI();
         View btnLogin = findViewById(R.id.btn_login);
         final EditText etPhone = (EditText) findViewById(R.id.et_phone);
         final EditText etPsw = (EditText) findViewById(R.id.et_psw);
-        mPhonePresenter = new PhoneLoginPresenter(new LoginModelImpl(), this);//// TODO: 2016/9/30 why do we need setPresenter, why not directly instance presenter
         btnLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,21 +38,29 @@ public class LoginActivity extends BaseActivity implements PhoneLoginContract.Vi
         });
     }
 
+    private void initDI() {
+        DaggerLoginComponent.builder()
+                .appComponent(getAppComponent())
+                .loginModule(new LoginModule(this))
+                .build().inject(this);
+    }
+
     @Override
     public void showLoginDialog() {
         Toast.makeText(this, "login...", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void showLoginSuccess() {
-        Toast.makeText(this, "login success", Toast.LENGTH_SHORT).show();
+    public void showLoginSuccess(User user) {
+        Toast.makeText(this, "login success, welcome " + user.getNick(), Toast.LENGTH_SHORT).show();
         WatchLiveActivity.launch(this);
     }
 
     @Override
-    public void showLoginError() {
-        Toast.makeText(this, "login failed", Toast.LENGTH_SHORT).show();
+    public void showLoginError(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
+
 
     @Override
     public void hideLoginDialog() {
@@ -61,8 +73,7 @@ public class LoginActivity extends BaseActivity implements PhoneLoginContract.Vi
     }
 
 
-
-    private String getEtText(EditText et){
+    private String getEtText(EditText et) {
         Editable editable = et.getText();
         return editable == null ? "" : editable.toString();
     }

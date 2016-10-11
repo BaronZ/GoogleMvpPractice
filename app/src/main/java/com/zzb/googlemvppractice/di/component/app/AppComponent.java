@@ -2,6 +2,7 @@ package com.zzb.googlemvppractice.di.component.app;
 
 import com.zzb.googlemvppractice.MvpApplication;
 import com.zzb.googlemvppractice.di.module.app.AppModule;
+import com.zzb.googlemvppractice.model.user.UserModel;
 import com.zzb.googlemvppractice.util.schedulers.BaseSchedulerProvider;
 
 import javax.inject.Singleton;
@@ -18,4 +19,6 @@ public interface AppComponent {
     void inject(MvpApplication application);
 
     BaseSchedulerProvider provideSchedulerProvider();
+
+    UserModel provideUserModel();
 }

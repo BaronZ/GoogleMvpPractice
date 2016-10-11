@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.zzb.googlemvppractice.di.qualifier.ApplicationContext;
+import com.zzb.googlemvppractice.model.user.UserModel;
 import com.zzb.googlemvppractice.util.schedulers.BaseSchedulerProvider;
 import com.zzb.googlemvppractice.util.schedulers.SchedulerProvider;
 
@@ -26,7 +27,7 @@ public class AppModule {
 
     @Provides
     @ApplicationContext
-    Context getAppContext(){
+    Context getAppContext() {
         return mApplication;
     }
 
@@ -34,5 +35,11 @@ public class AppModule {
     @Singleton
     BaseSchedulerProvider provideSchedulerProvider() {
         return SchedulerProvider.getInstance();
+    }
+
+    @Provides
+    @Singleton
+    UserModel provideUserModel() {
+        return new UserModel();
     }
 }
