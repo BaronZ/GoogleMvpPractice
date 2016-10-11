@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    final DAGGER_VERSION = '2.7'
+
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -28,8 +28,10 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
-    compile "com.google.dagger:dagger:$DAGGER_VERSION"
-    apt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
-    androidTestApt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
-    testApt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+    compile "com.google.dagger:dagger:$rootProject.DAGGER_VERSION"
+    apt "com.google.dagger:dagger-compiler:$rootProject.DAGGER_VERSION"
+    androidTestApt "com.google.dagger:dagger-compiler:$rootProject.DAGGER_VERSION"
+    testApt "com.google.dagger:dagger-compiler:$rootProject.DAGGER_VERSION"
+    compile "io.reactivex:rxjava:$rootProject.RXJAVA_VERSION"
+    compile "io.reactivex:rxandroid:$rootProject.RXANDROID_VERSION"
 }
