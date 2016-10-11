@@ -1,4 +1,4 @@
-package com.zzb.googlemvppractice.di.live.module;
+package com.zzb.googlemvppractice.di.module.live;
 
 import com.zzb.googlemvppractice.contract.live.WatchLiveContact;
 import com.zzb.googlemvppractice.contract.live.WatchLiveContact.View;

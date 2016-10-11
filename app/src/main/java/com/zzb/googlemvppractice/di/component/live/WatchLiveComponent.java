@@ -1,7 +1,7 @@
-package com.zzb.googlemvppractice.di.live.component;
+package com.zzb.googlemvppractice.di.component.live;
 
 import com.zzb.googlemvppractice.activity.live.WatchLiveActivity;
-import com.zzb.googlemvppractice.di.live.module.WatchLiveModule;
+import com.zzb.googlemvppractice.di.module.live.WatchLiveModule;
 
 import dagger.Component;
 
