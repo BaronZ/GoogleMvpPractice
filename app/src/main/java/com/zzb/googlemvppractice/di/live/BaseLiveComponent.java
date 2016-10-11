@@ -11,9 +11,9 @@ import dagger.Component;
  */
 @Component(modules = {BaseLiveModule.class})
 public interface BaseLiveComponent {
-
+    //component提供方法，给依赖的人用
     OnlineUsersContract.Presenter provideOnlineUsersPresenter();
-
+    //这里暂时没有调用，所以是灰的。其他的方法，WatchLiveModule都调用了，所以不是灰的
     OnlineUsersModel provideOnlineUsersModel();
 
     LiveModel provideLiveModel();
