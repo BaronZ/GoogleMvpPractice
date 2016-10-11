@@ -1,6 +1,7 @@
-package com.zzb.googlemvppractice.di.live;
+package com.zzb.googlemvppractice.di.live.component;
 
 import com.zzb.googlemvppractice.contract.online_users.OnlineUsersContract;
+import com.zzb.googlemvppractice.di.live.module.BaseLiveModule;
 import com.zzb.googlemvppractice.model.live.LiveModel;
 import com.zzb.googlemvppractice.model.online_users.OnlineUsersModel;
 
