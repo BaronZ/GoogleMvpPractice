@@ -30,7 +30,7 @@ public class LoginModel implements ILoginModel {
             mUserModel.updateUserInfo(user.getUid(), phone);
             return Observable.just(user).delay(3, TimeUnit.SECONDS);
         } else {
-            return Observable.error(new RuntimeException("login failed"));
+            return Observable.error(new RuntimeException("wrong password， correct password is 1"));
         }
     }
 
