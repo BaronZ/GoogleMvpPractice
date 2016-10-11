@@ -8,19 +8,21 @@ import android.view.View;
 import com.zzb.googlemvppractice.R;
 import com.zzb.googlemvppractice.activity.BaseActivity;
 import com.zzb.googlemvppractice.contract.live.WatchLiveContact;
+import com.zzb.googlemvppractice.di.live.DaggerWatchLiveComponent;
+import com.zzb.googlemvppractice.di.live.OnlineUsersModule;
+import com.zzb.googlemvppractice.di.live.WatchLiveModule;
 import com.zzb.googlemvppractice.entity.User;
-import com.zzb.googlemvppractice.model.live.LiveModel;
 import com.zzb.googlemvppractice.model.live.WatchLivePushController;
-import com.zzb.googlemvppractice.model.online_users.OnlineUsersModel;
-import com.zzb.googlemvppractice.presenter.live.WatchLivePresenter;
 import com.zzb.googlemvppractice.widget.OnlineUsersView;
+
+import javax.inject.Inject;
 
 public class WatchLiveActivity extends BaseActivity implements View.OnClickListener, WatchLiveContact.View {
     private OnlineUsersView mOnlineUsersView;
-    private WatchLivePushController mWatchLivePushController;
-    private OnlineUsersModel mOnlineUsersModel;
-    private LiveModel mLiveModel;
-    private WatchLivePresenter mWatchLivePresenter;
+    @Inject
+    WatchLivePushController mWatchLivePushController;
+    @Inject
+    WatchLiveContact.Presenter mWatchLivePresenter;
 
     public static void launch(Context context) {
         Intent intent = new Intent(context, WatchLiveActivity.class);
@@ -31,32 +33,23 @@ public class WatchLiveActivity extends BaseActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watch_live);
-        initModels();
-        initPresenters();
         initViews();
-        initPushController();
+        initInjections();
     }
 
-    private void initPresenters() {
-        mWatchLivePresenter = new WatchLivePresenter(mLiveModel, this);
+    private void initInjections() {
+        DaggerWatchLiveComponent.builder()
+                .watchLiveModule(new WatchLiveModule(this))
+                .onlineUsersModule(new OnlineUsersModule(mOnlineUsersView))
+                .build().inject(this);
     }
 
-    private void initModels() {
-        mLiveModel = new LiveModel();
-        mOnlineUsersModel = new OnlineUsersModel(mLiveModel);
-    }
 
     private void initViews() {
         mOnlineUsersView = (OnlineUsersView) findViewById(R.id.online_users_view);
-        mOnlineUsersView.init(mOnlineUsersModel, mLiveModel);
 
     }
 
-    private void initPushController() {
-        mWatchLivePushController = new WatchLivePushController();
-        mWatchLivePushController.setOnlineUsersPresenter(mOnlineUsersView.getOnlineUsersPresenter());
-        mWatchLivePushController.setWatchLivePresenter(mWatchLivePresenter);
-    }
 
     private void onLeaveLiveRoom() {
         mOnlineUsersView.selfLeaveRoom();

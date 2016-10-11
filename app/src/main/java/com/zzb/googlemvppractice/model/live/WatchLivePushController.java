@@ -2,9 +2,9 @@ package com.zzb.googlemvppractice.model.live;
 
 import android.util.Log;
 
+import com.zzb.googlemvppractice.contract.live.WatchLiveContact;
+import com.zzb.googlemvppractice.contract.online_users.OnlineUsersContract;
 import com.zzb.googlemvppractice.entity.User;
-import com.zzb.googlemvppractice.presenter.live.WatchLivePresenter;
-import com.zzb.googlemvppractice.presenter.online_users.OnlineUsersPresenter;
 
 import java.util.Random;
 
@@ -15,11 +15,12 @@ import java.util.Random;
 public class WatchLivePushController {
 
 
-    //    private OnlineUsersView mOnlineUsersView;
-    private OnlineUsersPresenter mOnlineUsersPresenter;
-    private WatchLivePresenter mWatchLivePresenter;
+    private OnlineUsersContract.Presenter mOnlineUsersPresenter;
+    private WatchLiveContact.Presenter mWatchLivePresenter;
 
-    public WatchLivePushController() {
+    public WatchLivePushController(OnlineUsersContract.Presenter onlineUsersPresenter, WatchLiveContact.Presenter watchLivePresenter) {
+        mOnlineUsersPresenter = onlineUsersPresenter;
+        mWatchLivePresenter = watchLivePresenter;
     }
 
     public void onReceivePushMessage(String message) {
@@ -46,11 +47,5 @@ public class WatchLivePushController {
         return user;
     }
 
-    public void setOnlineUsersPresenter(OnlineUsersPresenter onlineUsersPresenter) {
-        mOnlineUsersPresenter = onlineUsersPresenter;
-    }
 
-    public void setWatchLivePresenter(WatchLivePresenter watchLivePresenter) {
-        mWatchLivePresenter = watchLivePresenter;
-    }
 }

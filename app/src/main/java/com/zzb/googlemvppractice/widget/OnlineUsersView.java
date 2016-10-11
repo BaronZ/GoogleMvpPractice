@@ -8,11 +8,10 @@ import android.widget.TextView;
 import com.zzb.googlemvppractice.R;
 import com.zzb.googlemvppractice.contract.online_users.OnlineUsersContract;
 import com.zzb.googlemvppractice.entity.User;
-import com.zzb.googlemvppractice.model.live.LiveModel;
-import com.zzb.googlemvppractice.model.online_users.OnlineUsersModel;
-import com.zzb.googlemvppractice.presenter.online_users.OnlineUsersPresenter;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * Created by ZZB on 2016/10/9.
@@ -20,31 +19,32 @@ import java.util.List;
 
 public class OnlineUsersView extends FrameLayout implements OnlineUsersContract.View {
     private TextView mTvContent;
-    private OnlineUsersPresenter mOnlineUsersPresenter;
+    @Inject
+    OnlineUsersContract.Presenter mOnlineUsersPresenter;
 
     public OnlineUsersView(Context context) {
         super(context);
-        initViews(context);
+        init(context);
     }
 
     public OnlineUsersView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initViews(context);
+        init(context);
     }
 
     public OnlineUsersView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initViews(context);
+        init(context);
     }
 
-    private void initViews(Context context) {
+    private void init(Context context) {
         inflate(context, R.layout.online_users_view, this);
         mTvContent = (TextView) findViewById(R.id.tv_content);
     }
 
-    public void init(OnlineUsersModel onlineUsersModel, LiveModel liveModel) {
-        mOnlineUsersPresenter = new OnlineUsersPresenter(this, onlineUsersModel, liveModel);
-    }
+//    public void init(OnlineUsersContract.Presenter onlineUsersPresenter) {
+//        mOnlineUsersPresenter = onlineUsersPresenter;
+//    }
 
     @Override
     public void updateOnlineUsers(List<User> onlineUsers) {
@@ -78,7 +78,7 @@ public class OnlineUsersView extends FrameLayout implements OnlineUsersContract.
 
     //============presenter end
 
-    public OnlineUsersPresenter getOnlineUsersPresenter() {
+    public OnlineUsersContract.Presenter getOnlineUsersPresenter() {
         return mOnlineUsersPresenter;
     }
 
