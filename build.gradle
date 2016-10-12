@@ -26,4 +26,5 @@ ext {
     DAGGER_VERSION = '2.7'
     RXJAVA_VERSION = '1.1.8'
     RXANDROID_VERSION = '1.2.1'
+    MOCKITO_VERSION = '1.10.19'
 }
