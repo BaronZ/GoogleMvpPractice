@@ -39,6 +39,7 @@ public class PhoneLoginPresenter implements Presenter {
                     @Override
                     public void onError(Throwable e) {
                         mPhoneLoginView.showLoginError(e.getMessage());
+                        mPhoneLoginView.hideLoginDialog();
                     }
 
                     @Override
