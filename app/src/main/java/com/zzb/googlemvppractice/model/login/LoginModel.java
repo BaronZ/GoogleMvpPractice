@@ -4,7 +4,6 @@ import com.zzb.googlemvppractice.entity.User;
 import com.zzb.googlemvppractice.model.user.UserModel;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 
@@ -28,7 +27,7 @@ public class LoginModel implements ILoginModel {
             user.setUid(new Random().nextInt(10));
             user.setNick(phone);
             mUserModel.updateUserInfo(user.getUid(), phone);
-            return Observable.just(user).delay(3, TimeUnit.SECONDS);
+            return Observable.just(user);//.delay(3, TimeUnit.SECONDS);
         } else {
             return Observable.error(new RuntimeException("wrong password， correct password is 1"));
         }

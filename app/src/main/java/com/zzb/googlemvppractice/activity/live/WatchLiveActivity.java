@@ -47,7 +47,6 @@ public class WatchLiveActivity extends BaseActivity implements View.OnClickListe
                 .baseLiveComponent(baseLiveComponent)
                 .watchLiveModule(new WatchLiveModule(this))
                 .build().inject(this);
-
         mOnlineUsersView.setOnlineUsersPresenter(baseLiveComponent.provideOnlineUsersPresenter());
     }
 
