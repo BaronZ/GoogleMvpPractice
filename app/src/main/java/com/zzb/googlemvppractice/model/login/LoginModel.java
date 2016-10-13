@@ -3,8 +3,6 @@ package com.zzb.googlemvppractice.model.login;
 import com.zzb.googlemvppractice.entity.User;
 import com.zzb.googlemvppractice.model.user.UserModel;
 
-import java.util.Random;
-
 import rx.Observable;
 
 /**
@@ -24,7 +22,7 @@ public class LoginModel implements ILoginModel {
 
         User user = new User();
         if ("1".equals(psw)) {
-            user.setUid(new Random().nextInt(10));
+            user.setUid(phone.hashCode());
             user.setNick(phone);
             mUserModel.updateUserInfo(user.getUid(), phone);
             return Observable.just(user);//.delay(3, TimeUnit.SECONDS);
