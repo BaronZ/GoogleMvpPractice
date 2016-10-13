@@ -2,6 +2,7 @@ package com.zzb.googlemvppractice;
 
 import android.app.Application;
 
+import com.squareup.leakcanary.LeakCanary;
 import com.zzb.googlemvppractice.di.component.app.AppComponent;
 import com.zzb.googlemvppractice.di.component.app.DaggerAppComponent;
 import com.zzb.googlemvppractice.di.module.app.AppModule;
@@ -20,6 +21,16 @@ public class MvpApplication extends Application {
         super.onCreate();
         sApplication = this;
         initDI();
+        initLeakCanary();
+    }
+
+    private void initLeakCanary() {
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
     }
 
     private void initDI() {

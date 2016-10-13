@@ -34,7 +34,9 @@ dependencies {
     apt "com.google.dagger:dagger-compiler:$rootProject.DAGGER_VERSION"
     compile "io.reactivex:rxjava:$rootProject.RXJAVA_VERSION"
     compile "io.reactivex:rxandroid:$rootProject.RXANDROID_VERSION"
-
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.LEAKCANARY_VERSION"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.LEAKCANARY_VERSION"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.LEAKCANARY_VERSION"
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
