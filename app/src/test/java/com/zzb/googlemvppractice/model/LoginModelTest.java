@@ -7,7 +7,7 @@ import com.zzb.googlemvppractice.model.user.UserModel;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 import rx.observers.TestSubscriber;
 
@@ -31,7 +31,7 @@ public class LoginModelTest {
 
         mLoginModel.phoneLogin(phone, "1").subscribe(testSubscriber);
         testSubscriber.assertNoErrors();
-        testSubscriber.assertReceivedOnNext(Arrays.asList(expectedUser));
+        testSubscriber.assertReceivedOnNext(Collections.singletonList(expectedUser));
         testSubscriber.assertCompleted();
 
     }
