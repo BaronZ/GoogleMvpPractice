@@ -3,6 +3,8 @@ package com.zzb.googlemvppractice.model.login;
 import com.zzb.googlemvppractice.entity.User;
 import com.zzb.googlemvppractice.model.user.UserModel;
 
+import java.util.concurrent.TimeUnit;
+
 import rx.Observable;
 
 /**
@@ -25,7 +27,7 @@ public class LoginModel implements ILoginModel {
             user.setUid(phone.hashCode());
             user.setNick(phone);
             mUserModel.updateUserInfo(user.getUid(), phone);
-            return Observable.just(user);//.delay(3, TimeUnit.SECONDS);
+            return Observable.just(user).delay(3, TimeUnit.SECONDS);
         } else {
             return Observable.error(new RuntimeException("wrong password， correct password is 1"));
         }

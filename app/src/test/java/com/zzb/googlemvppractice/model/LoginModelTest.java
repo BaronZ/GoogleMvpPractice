@@ -34,7 +34,7 @@ public class LoginModelTest {
         User expectedUser = new User(phone.hashCode());
         expectedUser.setNick(phone);
 
-        mLoginModel.phoneLogin(phone, "1").subscribe(mUserTestSubscriber);
+        mLoginModel.phoneLogin(phone, "1").toBlocking().subscribe(mUserTestSubscriber);
         mUserTestSubscriber.assertNoErrors();
         mUserTestSubscriber.assertReceivedOnNext(Collections.singletonList(expectedUser));
         mUserTestSubscriber.assertCompleted();
@@ -46,7 +46,7 @@ public class LoginModelTest {
         User expectedUser = new User(phone.hashCode());
         expectedUser.setNick(phone);
 
-        mLoginModel.phoneLogin(phone, "1").subscribe(mUserTestSubscriber);
+        mLoginModel.phoneLogin(phone, "1").toBlocking().subscribe(mUserTestSubscriber);
         mUserTestSubscriber.assertNoErrors();
         mUserTestSubscriber.assertCompleted();
 //        mUserTestSubscriber.assertReceivedOnNext(Collections.singletonList(expectedUser));
@@ -58,7 +58,7 @@ public class LoginModelTest {
     @Test
     public void rx_onError_test(){
         String phone = "1";
-        mLoginModel.phoneLogin(phone, "2").subscribe(mUserTestSubscriber);
+        mLoginModel.phoneLogin(phone, "2").toBlocking().subscribe(mUserTestSubscriber);
         mUserTestSubscriber.assertError(RuntimeException.class);
         mUserTestSubscriber.assertNotCompleted();
 
