@@ -11,8 +11,11 @@ import com.zzb.googlemvppractice.util.schedulers.ImmediateSchedulerProvider;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.verify;
 
 /**
  * Created by ZZB on 2016/10/12.
@@ -35,9 +38,9 @@ public class LoginPresenterTest {
         mPhoneLoginPresenter.login("1", "1");
 
         //执行了上面的login方法之后期望调用View中的下面三个方法，如果按顺序执行，测试通过
-        Mockito.verify(mPhoneLoginView).showLoginDialog();//显示Loading
-        Mockito.verify(mPhoneLoginView).showLoginSuccess(Mockito.any(User.class));//登录成功回调
-        Mockito.verify(mPhoneLoginView).hideLoginDialog();//隐藏Loading
+        verify(mPhoneLoginView).showLoginDialog();//显示Loading
+        verify(mPhoneLoginView).showLoginSuccess(any(User.class));//登录成功回调
+        verify(mPhoneLoginView).hideLoginDialog();//隐藏Loading
     }
     @Test
     public void login_failed_test() {
@@ -45,8 +48,9 @@ public class LoginPresenterTest {
         mPhoneLoginPresenter.login("", "");
 
         //执行了上面的login方法之后期望调用View中的下面三个方法，如果按顺序执行，测试通过
-        Mockito.verify(mPhoneLoginView).showLoginDialog();//显示Loading
-        Mockito.verify(mPhoneLoginView).showLoginError(Mockito.anyString());//登录失败回调
-        Mockito.verify(mPhoneLoginView).hideLoginDialog();//隐藏Loading
+        verify(mPhoneLoginView).showLoginDialog();//显示Loading
+        verify(mPhoneLoginView).showLoginError(anyString());//登录失败回调
+        verify(mPhoneLoginView).hideLoginDialog();//隐藏Loading
+
     }
 }
