@@ -1,4 +1,4 @@
-package com.zzb.googlemvppractice.api;
+package com.zzb.googlemvppractice.mvp.api;
 
 import com.zzb.googlemvppractice.entity.github.Repo;
 
