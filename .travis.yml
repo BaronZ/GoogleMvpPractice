@@ -3,6 +3,7 @@ jdk: oraclejdk8
 sudo: false
 
 notifications:
+    #email: false
     email:
         - realbo89@outlook.com
 
@@ -57,10 +58,10 @@ script:
     - adb shell input keyevent 82 &
     - ./gradlew connectedCheck --stacktrace
 
-before_install:
-    - pip install --user codecov    #Install codecov
+#before_install:
+#    - pip install --user codecov    #Install codecov
 
-after_success:
-    - codecov                       #Run codecov
+#after_success:
+#    - codecov                       #Run codecov
 
 after_failure: "cat $TRAVIS_BUILD_DIR/app/build/outputs/lint-results-debug.xml"
